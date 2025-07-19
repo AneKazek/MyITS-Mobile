@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -30,12 +30,6 @@ export default function App() {
     }
   }, []);
 
-  // onNavigationStateChange is no longer needed for navigation control
-  // You can keep it for logging if you want, but its logic for re-routing is gone.
-  // const onNavigationStateChange = useCallback((navState) => {
-  //   console.log('onNavigationStateChange (after decision):', navState.url);
-  // }, []);
-
   return (
     <SafeAreaView style={styles.container}>
       <WebView
@@ -56,7 +50,13 @@ export default function App() {
             console.log('Blocked window.open to external URL:', targetUrl);
           }
         }}
-        // onNavigationStateChange={onNavigationStateChange} // Removed
+        cacheEnabled={true}
+        domStorageEnabled={true}
+        javaScriptCanOpenWindowsAutomatically={true}
+        {...(Platform.OS === 'android' && {
+          renderToHardwareTextureAndroid: true,
+          androidLayerType: 'hardware',
+        })}
       />
     </SafeAreaView>
   );
