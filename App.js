@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { WebView } from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -18,22 +18,22 @@ export default function App() {
   const handleShouldStartLoadWithRequest = useCallback((request) => {
     console.log('onShouldStartLoadWithRequest:', request.url);
 
-    if (request.url.startsWith(initialUrl) || request.url === 'about:blank') {
+    const isInternalDomain = request.url.includes('.its.ac.id');
+
+    if (isInternalDomain || request.url === 'about:blank') {
       return true;
     } else {
-      if (webviewRef.current) {
-        webviewRef.current.injectJavaScript(`window.location.href = "${request.url}";`);
-      }
+      console.log('Blocked external navigation to:', request.url);
       return false;
     }
-  }, [initialUrl]);
+  }, []);
 
   const onNavigationStateChange = useCallback((navState) => {
     console.log('onNavigationStateChange (after decision):', navState.url);
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <WebView
         ref={webviewRef}
         source={{ uri: initialUrl }}
@@ -41,13 +41,14 @@ export default function App() {
         onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
         onNavigationStateChange={onNavigationStateChange}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 30,
   },
   webview: {
     flex: 1,
