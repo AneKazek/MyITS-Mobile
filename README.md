@@ -1,50 +1,55 @@
-# Welcome to your Expo app 👋
+# MyITS Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## Get started
+MyITS Mobile adalah aplikasi mobile yang dikembangkan menggunakan Expo, React Native, dan TypeScript. Aplikasi ini bertujuan untuk menyediakan akses mudah ke layanan dan informasi ITS melalui perangkat seluler.
 
-1. Install dependencies
+## Fitur
 
-   ```bash
-   npm install
-   ```
+- Akses cepat ke informasi ITS.
+- Antarmuka pengguna yang intuitif dan responsif.
+- Kompatibel dengan Android dan iOS.
 
-2. Start the app
+## Instalasi
 
-   ```bash
-   npx expo start
-   ```
+Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah berikut:
 
-In the output, you'll find options to open the app in a
+1.  **Clone repositori:**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    ```bash
+    git clone https://github.com/AneKazek/MyITS-Mobile.git
+    cd MyITS-Mobile
+    ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+2.  **Instal dependensi:**
 
-## Get a fresh project
+    ```bash
+    npm install
+    ```
 
-When you're ready, run:
+## Penggunaan
+
+Untuk memulai aplikasi dalam mode pengembangan:
 
 ```bash
-npm run reset-project
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Anda akan diberikan opsi untuk membuka aplikasi di emulator Android, simulator iOS, atau Expo Go.
 
-## Learn more
+## Struktur Proyek
 
-To learn more about developing your project with Expo, look at the following resources:
+```
+.expo/
+app/
+assets/
+components/
+constants/
+hooks/
+...
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Lisensi
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Proyek ini dilisensikan di bawah Lisensi MIT. Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
