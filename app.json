@@ -7,9 +7,11 @@
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/Logo ITS-Biru.png",
+      "image": "./assets/images/Logo-ITS-Biru.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "imageWidth": 55,
+      "imageHeight": 55
     },
     "ios": {
       "supportsTablet": true

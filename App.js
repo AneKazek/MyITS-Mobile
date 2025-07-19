@@ -20,6 +20,10 @@ export default function App() {
       <WebView
         source={{ uri: 'https://my.its.ac.id/' }}
         style={styles.webview}
+        onShouldStartLoadWithRequest={(request) => {
+          console.log('Navigating to:', request.url);
+          return true;
+        }}
       />
     </View>
   );
