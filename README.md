@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-MyITS Mobile adalah aplikasi mobile yang dikembangkan menggunakan Expo, React Native, dan TypeScript. Aplikasi ini bertujuan untuk menyediakan akses mudah ke layanan dan informasi ITS melalui perangkat seluler.
+MyITS Mobile adalah aplikasi mobile yang dikembangkan menggunakan Expo, React Native, dan TypeScript. Aplikasi ini bertujuan untuk menyediakan akses mudah ke layanan dan informasi ITS melalui perangkat seluler. Sebenernya karena males ngetik Manual Domainnya aja sih, makanya saya inisiatif bikin ini project WKWKWKK
 
 ## Fitur
 
