@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 import * as SplashScreen from 'expo-splash-screen';
@@ -6,24 +6,36 @@ import * as SplashScreen from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const webviewRef = useRef(null);
+  const initialUrl = 'https://my.its.ac.id/';
+
   useEffect(() => {
-    // Here you can add any logic you want to run while the splash screen is displayed.
-    // For example, you could fetch data from an API.
-    // For this example, we'll just wait for 2 seconds.
     setTimeout(async () => {
       await SplashScreen.hideAsync();
     }, 2000);
   }, []);
 
+  const onNavigationStateChange = useCallback((navState) => {
+    console.log('onNavigationStateChange:', navState.url);
+    if (navState.url !== initialUrl && !navState.url.startsWith(initialUrl)) {
+      if (webviewRef.current) {
+        webviewRef.current.stopLoading();
+        webviewRef.current.injectJavaScript(`window.location.href = "${navState.url}";`);
+      }
+    }
+  }, [initialUrl]);
+
   return (
     <View style={styles.container}>
       <WebView
-        source={{ uri: 'https://my.its.ac.id/' }}
+        ref={webviewRef}
+        source={{ uri: initialUrl }}
         style={styles.webview}
         onShouldStartLoadWithRequest={(request) => {
-          console.log('Navigating to:', request.url);
+          console.log('onShouldStartLoadWithRequest:', request.url);
           return true;
         }}
+        onNavigationStateChange={onNavigationStateChange}
       />
     </View>
   );
