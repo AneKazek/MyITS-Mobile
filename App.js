@@ -15,15 +15,22 @@ export default function App() {
     }, 2000);
   }, []);
 
-  const onNavigationStateChange = useCallback((navState) => {
-    console.log('onNavigationStateChange:', navState.url);
-    if (navState.url !== initialUrl && !navState.url.startsWith(initialUrl)) {
+  const handleShouldStartLoadWithRequest = useCallback((request) => {
+    console.log('onShouldStartLoadWithRequest:', request.url);
+
+    if (request.url.startsWith(initialUrl) || request.url === 'about:blank') {
+      return true;
+    } else {
       if (webviewRef.current) {
-        webviewRef.current.stopLoading();
-        webviewRef.current.injectJavaScript(`window.location.href = "${navState.url}";`);
+        webviewRef.current.injectJavaScript(`window.location.href = "${request.url}";`);
       }
+      return false;
     }
   }, [initialUrl]);
+
+  const onNavigationStateChange = useCallback((navState) => {
+    console.log('onNavigationStateChange (after decision):', navState.url);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -31,10 +38,7 @@ export default function App() {
         ref={webviewRef}
         source={{ uri: initialUrl }}
         style={styles.webview}
-        onShouldStartLoadWithRequest={(request) => {
-          console.log('onShouldStartLoadWithRequest:', request.url);
-          return true;
-        }}
+        onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
         onNavigationStateChange={onNavigationStateChange}
       />
     </View>
